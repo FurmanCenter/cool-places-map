@@ -1,4 +1,4 @@
-# Favorite Furmaner Lunch Spots
+# [Favorite Furmaner Lunch Spots](https://furmancenter.github.io/cool-places-map/)
 
 ## Contributing
 
