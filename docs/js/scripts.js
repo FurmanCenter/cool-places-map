@@ -1,23 +1,23 @@
 const fcLatLon = [40.7307216, -73.9998367]
 
-var map = L.map('lunch-map').setView(fcLatLon, 16);
+var map = L.map('places-map').setView(fcLatLon, 16);
 
 L.tileLayer('https://b.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-getPlaces((lunchPlaces) => {
+getPlaces((places) => {
 
-  lunchPlaces.forEach((lunchPlace) => {
+  places.forEach((place) => {
 
-    const latLon = [lunchPlace.lat, lunchPlace.lon];
+    const latLon = [place.lat, place.lon];
 
     const typePalette = {
       lunch: 'gold',
       bar: 'navy'
     };
 
-    const placeColor = typePalette[lunchPlace.type];
+    const placeColor = typePalette[place.type];
 
     const circleOptions = {
       stroke: false,
@@ -28,7 +28,7 @@ getPlaces((lunchPlaces) => {
     }
 
     L.circleMarker(latLon, circleOptions).addTo(map)
-        .bindPopup('<b>' + lunchPlace.name + '</b><br>' + lunchPlace.description);
+        .bindPopup('<b>' + place.name + '</b><br>' + place.description);
   });
 });
 
@@ -37,7 +37,7 @@ function getPlaces(callback) {
     url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTtDhxGKMcnLTHkSHCURW5HACFOSPSOOGSTpEY3C7PH8Rk1Nq8ZFVvhihfVEQmGB25iyQ3e9B3ADLgY/pub?gid=0&single=true&output=csv",
     type: "GET"
   }).done((csv) => {
-    const lunchPlaces = Papa.parse(csv, {header: true}).data;
-    callback(lunchPlaces);
+    const places = Papa.parse(csv, {header: true}).data;
+    callback(places);
   });
 }
