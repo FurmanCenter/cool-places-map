@@ -5,13 +5,3 @@
   left: 0;
   bottom: 0;
 }
-
-#random-button {
-  font-family: sans-serif;
-  font-size: 20px;
-  position: absolute;
-  radius: 8px;
-  z-index: 1000;
-  left: 10px;
-  bottom: 10px;
-}
