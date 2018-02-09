@@ -1,4 +1,4 @@
-# <a href="https://furmancenter.github.io/cool-places-map/" target="_blank">Favorite Furmaner Places</a>
+# [Favorite Furmaner Places](https://furmancenter.github.io/cool-places-map/)
 
 ### [Add Your Own Cool Places!](https://github.com/FurmanCenter/cool-places-map/wiki/Add-new-places)
 
