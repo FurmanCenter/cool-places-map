@@ -2,21 +2,7 @@
 
 ## Contributing
 
-### [Add Your Own Favorite Places!](https://docs.google.com/spreadsheets/d/1tnQynN3Ga7QCwc-XkW9P9BUhVSlfrXMFK9F30DAn9pI/edit)
-
-To get the lat/lon, use google maps:
-
-1. Find your cool place, right click on the location, and select `What's Here?`:
-
-![](assets/google-maps-1.png)
-
-2. Click on the Lat/Lon link at the bottom of the map:
-
-![](assets/google-maps-2.png)
-
-3. Copy the Lat/Lon from the text box on the top left:
-
-![](assets/google-maps-3.png)
+### [Add Your Own Favorite Places!](https://github.com/FurmanCenter/cool-places-map/wiki/Add-new-places)
 
 ### Add More Place Types!
 
