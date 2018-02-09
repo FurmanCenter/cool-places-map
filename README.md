@@ -1,8 +1,8 @@
-# [Favorite Furmaner Lunch Spots](https://furmancenter.github.io/cool-places-map/)
+# [Favorite Furmaner Places](https://furmancenter.github.io/cool-places-map/)
 
 ## Contributing
 
-[Add your own Favorite spots](https://docs.google.com/spreadsheets/d/1tnQynN3Ga7QCwc-XkW9P9BUhVSlfrXMFK9F30DAn9pI/edit)
+[Add Your Own Favorite Places!](https://docs.google.com/spreadsheets/d/1tnQynN3Ga7QCwc-XkW9P9BUhVSlfrXMFK9F30DAn9pI/edit)
 
 If we need to add more place types:
 
