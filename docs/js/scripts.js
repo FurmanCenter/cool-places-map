@@ -14,6 +14,7 @@ getPlaces((places) => {
 
     const typePalette = {
       lunch: 'gold',
+      pizza: 'crimson',
       bar: 'navy'
     };
 
