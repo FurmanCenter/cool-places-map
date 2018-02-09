@@ -2,7 +2,7 @@
 
 ## Contributing
 
-### [Add Your Own Favorite Places!](https://github.com/FurmanCenter/cool-places-map/wiki/Add-new-places)
+### [Add Your Own Cool Places!](https://github.com/FurmanCenter/cool-places-map/wiki/Add-new-places)
 
 ### Add More Place Types!
 
