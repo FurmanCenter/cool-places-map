@@ -43,14 +43,5 @@ h1, h3  {
   margin-right: 5px;
 }
 
-.lunch::before {
-  background-color: gold;
-}
-
-.pizza::before {
-  background-color: crimson;
-}
-
-.bar::before {
-  background-color: navy;
-}
+/* Added via Jquery eg: */
+/* .<type>::before {background-color: <color>} */
