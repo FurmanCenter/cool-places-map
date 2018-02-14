@@ -5,3 +5,52 @@
   left: 0;
   bottom: 0;
 }
+
+#legend-container {
+  position: absolute;
+  z-index: 1000;
+  bottom: 30px;
+  right: 10px;
+  background: #FFF;
+  padding: 10px 15px 10px 15px;
+  border-radius: 7px;
+}
+
+#legend {
+  float: right;
+  background: white;
+  padding: 10px;
+}
+
+h1, h3  {
+  margin: 0;
+}
+
+.legendItem {
+}
+
+.legendItem::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  -moz-border-radius: 7.5px;
+  -webkit-border-radius: 7.5px;
+  border-radius: 16.5px;
+  border: 2px solid #FFF;
+  position: relative;
+  top: 4px;
+  margin-right: 5px;
+}
+
+.lunch::before {
+  background-color: gold;
+}
+
+.pizza::before {
+  background-color: crimson;
+}
+
+.bar::before {
+  background-color: navy;
+}
