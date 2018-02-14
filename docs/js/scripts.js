@@ -1,9 +1,9 @@
 
 // Initialize the map, centered/zoomed on NYU Furman Center
 
-const fcLatLon = [40.7307216, -73.9998367]
+const fcLatLng = [40.7307216, -73.9998367]
 
-var map = L.map('places-map').setView(fcLatLon, 16);
+var map = L.map('places-map').setView(fcLatLng, 16);
 
 L.tileLayer('https://b.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -22,8 +22,12 @@ getPlaces((places) => {
   const layerOptions = {collapsed: false, position: 'topleft'};
 
   const typeLayers = {}; // fill with layers to create layer control tool
-  
+  const typeColorMap = {}; // fill with type/color key/val pairs
+
   placeTypes.forEach((type, i) => {
+    // Make this type/color object for later
+    typeColorMap[type] = typeColors[i]
+
     const layer = makeTypeLayer(type, places);
 
     // add it to an object of all layers
@@ -37,6 +41,55 @@ getPlaces((places) => {
 
   // Add layer control tool
   L.control.layers(null, typeLayers, layerOptions).addTo(map);
+
+
+  map.on('click', (e) => {
+
+    map.panTo(e.latlng);
+
+    const typeOptions = placeTypes
+      .map((type) => `<option value="${type}">${type}</option>`)
+      .join('');
+
+    const popupForm = '<h3>Add Your Own Cool Place!</h3><br>' +
+      '<form id = "placeAdder">' +
+        '<label><b>Type: </b></label>' +
+        '<select id="type" form="placeAdder">' +
+          typeOptions +
+        '</select><br><br>' +
+        '<label><b>Name: </b></label>' +
+        '<input type="text" id="name"/><br><br>' +
+        '<label><b>Description: </b></label><br><textarea id="description" rows="4" cols="40"></textarea><br><br>' +
+        '<input type="submit" value="Add Place"/>' +
+      '</form>'
+
+    L.popup()
+      .setLatLng(e.latlng)
+      .setContent(popupForm)
+      .openOn(map);
+
+    $('#placeAdder').submit((event) => {
+        event.preventDefault(); // prevents from reloading page
+
+        const newType = $('#type').val();
+
+        const newPlace = {
+          name: $('#name').val(),
+          type: newType,
+          color: typeColorMap[newType],
+          description: $('#description').val(),
+          lat: e.latlng.lat,
+          lng: e.latlng.lng,
+        };
+
+        const newMarker = makeMarker(newPlace);
+
+        map.addLayer(newMarker).closePopup();
+
+    });
+
+  });
+
 });
 
 
@@ -65,7 +118,7 @@ function getPlaces(callback) {
  * @returns {CircleMarker}
  */
 const makeMarker = (place) => {
-  const latLon = [place.lat, place.lon];
+  const latLng = [place.lat, place.lng];
 
   const circleOptions = {
     stroke: false,
@@ -75,7 +128,7 @@ const makeMarker = (place) => {
     width: 0
   }
 
-  return L.circleMarker(latLon, circleOptions)
+  return L.circleMarker(latLng, circleOptions)
       .bindPopup('<b>' + place.name + '</b><br>' + place.description);
 }
 
