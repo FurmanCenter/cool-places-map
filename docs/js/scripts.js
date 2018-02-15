@@ -181,7 +181,9 @@ function makeApiCall(newPlaceValues) {
     var valueRangeBody = {
        'range': 'A1:F50',
        'majorDimension': 'ROWS',
-       'values': newPlaceValues
+       'values': [
+         newPlaceValues
+       ]
     };
 
     var request = gapi.client.sheets.spreadsheets.values.append(params, valueRangeBody);
