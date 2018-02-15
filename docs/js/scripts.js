@@ -190,7 +190,7 @@ function makeApiCall() {
 function initClient() {
   var API_KEY = 'AIzaSyBO5JeHgaTqNYsWXrky6k3O0xrfEmX7M00';
 
-  var CLIENT_ID = 'cool-places-map';
+  var CLIENT_ID = '1005863219093-ah9qqhd14sbcrvo3hqfi5e6meufo9d5t.apps.googleusercontent.com';
 
   var SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
 
