@@ -71,22 +71,29 @@ getPlaces((places) => {
     $('#placeAdder').submit((event) => {
         event.preventDefault(); // prevents from reloading page
 
+        const newName = $('#name').val()
         const newType = $('#type').val();
+        const newDescription = $('#description').val()
+        const newLat= e.latlng.lat
+        const newLng = e.latlng.lng
+        const newColor = typeColorMap[newType]
 
         const newPlace = {
-          name: $('#name').val(),
+          name: newName,
           type: newType,
-          color: typeColorMap[newType],
-          description: $('#description').val(),
-          lat: e.latlng.lat,
-          lng: e.latlng.lng,
+          description: newDescription,
+          lat: newLat,
+          lng: newLng,
+          color: newColor,
         };
 
         const newMarker = makeMarker(newPlace);
 
         map.addLayer(newMarker).closePopup();
 
-        makeApiCall();
+        const newPlaceValues = [newName, newType, newDescription, newLat, newLng, newColor];
+
+        makeApiCall(newPlaceValues);
 
     });
 
@@ -152,7 +159,7 @@ const addLegendType = (type, color) => {
 }
 // Feom Googlesheets api docs:
 // https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/append
-function makeApiCall() {
+function makeApiCall(newPlaceValues) {
   var params = {
     // The ID of the spreadsheet to update.
     spreadsheetId: '1hbCidPNlF2mbI-l4xHH6nt8WJyHXQqWpZ_EAXRylC-4',
@@ -173,7 +180,7 @@ function makeApiCall() {
   var valueRangeBody = {
      'range': 'A1:F50',
      'majorDimension': 'ROWS',
-     'values': ['mamoun', 'Lunch', 'Falafel', 40.733046, -73.997131, 'gold']
+     'values': newPlaceValues
   };
 
   var request = gapi.client.sheets.spreadsheets.values.append(params, valueRangeBody);
