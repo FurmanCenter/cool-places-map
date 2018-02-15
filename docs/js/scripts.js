@@ -105,7 +105,7 @@ getPlaces((places) => {
 function getPlaces(callback) {
   // If defined with an arrow, must be before the call to getPlaces, but other functions are fine..?
   $.ajax({
-    url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTtDhxGKMcnLTHkSHCURW5HACFOSPSOOGSTpEY3C7PH8Rk1Nq8ZFVvhihfVEQmGB25iyQ3e9B3ADLgY/pub?gid=0&single=true&output=csv',
+    url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9viPoCAUDlBPYzMFrmm4pyjGtFhN65ZAnrVp_NX86V--f67I9B4FD50cNC_Q3V0f3sMwvMofKt0Ix/pub?gid=0&single=true&output=csv',
     type: 'GET'
   }).done((csv) => {
     const places = Papa.parse(csv, {header: true}).data;
