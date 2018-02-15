@@ -180,7 +180,7 @@ function makeApiCall(newPlaceValues) {
   var valueRangeBody = {
      'range': 'A1:F50',
      'majorDimension': 'ROWS',
-     'values': newPlaceValues
+     'values': ['newName', 'newType', 'newDescription', 1.1, 1.2, 'newColor']
   };
 
   var request = gapi.client.sheets.spreadsheets.values.append(params, valueRangeBody);
@@ -206,7 +206,7 @@ function initClient() {
     'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
   }).then(function() {
     gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
-    updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+    // updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
   });
 }
 
