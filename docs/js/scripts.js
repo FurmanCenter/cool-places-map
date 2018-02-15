@@ -1,7 +1,7 @@
 
 // Initialize the map, centered/zoomed on NYU Furman Center
 
-const fcLatLng = [40.7307216, -73.9998367]
+const fcLatLng = [40.7307216, -73.9998367];
 
 var map = L.map('places-map').setView(fcLatLng, 16);
 
@@ -86,6 +86,8 @@ getPlaces((places) => {
 
         map.addLayer(newMarker).closePopup();
 
+        makeApiCall();
+
     });
 
   });
@@ -147,4 +149,76 @@ const makeTypeLayer = (type, places) => {
 const addLegendType = (type, color) => {
   $('#legend').append(`<div class="legendItem ${type}">${type}</div>`);
   $('head').append(`<style>.${type}::before{background-color:${color};}</style>`);
+}
+// Feom Googlesheets api docs:
+// https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/append
+function makeApiCall() {
+  var params = {
+    // The ID of the spreadsheet to update.
+    spreadsheetId: '1hbCidPNlF2mbI-l4xHH6nt8WJyHXQqWpZ_EAXRylC-4',
+
+    // The A1 notation of a range to search for a logical table of data.
+    // Values will be appended after the last row of the table.
+    range: 'A1:F50',
+
+    // How the input data should be interpreted.
+    valueInputOption: 'USER_ENTERED',
+
+    // How the input data should be inserted.
+    insertDataOption: 'INSERT_ROWS',
+
+    crossDomain: true,
+  };
+
+  var valueRangeBody = {
+     'range': 'A1',
+     'majorDimension': 'ROWS',
+     'values': [
+       ['mamoun'], ['Lunch'], ['Falafel'], [40.733046], [-73.997131], ['gold']
+     ]
+  };
+
+  var request = gapi.client.sheets.spreadsheets.values.append(params, valueRangeBody);
+  request.then(function(response) {
+    // TODO: Change code below to process the `response` object:
+    console.log(response.result);
+  }, function(reason) {
+    console.error('error: ' + reason.result.error.message);
+  });
+}
+
+function initClient() {
+  var API_KEY = 'AIzaSyBE2NdBFnasjhbVVXVd-GTyD8AN24n-BY4';
+
+  var CLIENT_ID = 'cool-places-map';
+
+  var SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
+
+  gapi.client.init({
+    'apiKey': API_KEY,
+    'clientId': CLIENT_ID,
+    'scope': SCOPE,
+    'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+  }).then(function() {
+    gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
+    updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+  });
+}
+
+function handleClientLoad() {
+  gapi.load('client:auth2', initClient);
+}
+
+function updateSignInStatus(isSignedIn) {
+  if (isSignedIn) {
+    makeApiCall();
+  }
+}
+
+function handleSignInClick(event) {
+  gapi.auth2.getAuthInstance().signIn();
+}
+
+function handleSignOutClick(event) {
+  gapi.auth2.getAuthInstance().signOut();
 }
