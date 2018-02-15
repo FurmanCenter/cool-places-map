@@ -188,7 +188,7 @@ function makeApiCall() {
 }
 
 function initClient() {
-  var API_KEY = 'AIzaSyBmq7xobu0vnWvsbe5s_j8WRckI0ka7IeY';
+  var API_KEY = 'AIzaSyBO5JeHgaTqNYsWXrky6k3O0xrfEmX7M00';
 
   var CLIENT_ID = 'cool-places-map';
 
