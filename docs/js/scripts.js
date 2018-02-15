@@ -174,7 +174,7 @@ function makeApiCall() {
      'range': 'A1:F50',
      'majorDimension': 'ROWS',
      'values': [
-       ['mamoun'], ['Lunch'], ['Falafel'], [40.733046], [-73.997131], ['gold']
+       ['mamoun', 'Lunch', 'Falafel', 40.733046, -73.997131, 'gold']
      ]
   };
 
