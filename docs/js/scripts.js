@@ -216,7 +216,7 @@ function handleClientLoad() {
 
 function updateSignInStatus(isSignedIn) {
   if (isSignedIn) {
-    makeApiCall();
+    // makeApiCall();
   }
 }
 
