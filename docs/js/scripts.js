@@ -160,36 +160,38 @@ const addLegendType = (type, color) => {
 // Feom Googlesheets api docs:
 // https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/append
 function makeApiCall(newPlaceValues) {
-  var params = {
-    // The ID of the spreadsheet to update.
-    spreadsheetId: '1hbCidPNlF2mbI-l4xHH6nt8WJyHXQqWpZ_EAXRylC-4',
+  if (typeof newPlaceValues !== "undefined") {
+    var params = {
+      // The ID of the spreadsheet to update.
+      spreadsheetId: '1hbCidPNlF2mbI-l4xHH6nt8WJyHXQqWpZ_EAXRylC-4',
 
-    // The A1 notation of a range to search for a logical table of data.
-    // Values will be appended after the last row of the table.
-    range: 'A1:F50',
+      // The A1 notation of a range to search for a logical table of data.
+      // Values will be appended after the last row of the table.
+      range: 'A1:F50',
 
-    // How the input data should be interpreted.
-    valueInputOption: 'USER_ENTERED',
+      // How the input data should be interpreted.
+      valueInputOption: 'USER_ENTERED',
 
-    // How the input data should be inserted.
-    insertDataOption: 'INSERT_ROWS',
+      // How the input data should be inserted.
+      insertDataOption: 'INSERT_ROWS',
 
-    crossDomain: true,
-  };
+      crossDomain: true,
+    };
 
-  var valueRangeBody = {
-     'range': 'A1:F50',
-     'majorDimension': 'ROWS',
-     'values': ['newName', 'newType', 'newDescription', 1.1, 1.2, 'newColor']
-  };
+    var valueRangeBody = {
+       'range': 'A1:F50',
+       'majorDimension': 'ROWS',
+       'values': newPlaceValues
+    };
 
-  var request = gapi.client.sheets.spreadsheets.values.append(params, valueRangeBody);
-  request.then(function(response) {
-    // TODO: Change code below to process the `response` object:
-    console.log(response.result);
-  }, function(reason) {
-    console.error('error: ' + reason.result.error.message);
-  });
+    var request = gapi.client.sheets.spreadsheets.values.append(params, valueRangeBody);
+    request.then(function(response) {
+      // TODO: Change code below to process the `response` object:
+      console.log(response.result);
+    }, function(reason) {
+      console.error('error: ' + reason.result.error.message);
+    });
+  }
 }
 
 function initClient() {
@@ -206,7 +208,7 @@ function initClient() {
     'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
   }).then(function() {
     gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
-    // updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+    updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
   });
 }
 
@@ -216,7 +218,7 @@ function handleClientLoad() {
 
 function updateSignInStatus(isSignedIn) {
   if (isSignedIn) {
-    // makeApiCall();
+    makeApiCall();
   }
 }
 
