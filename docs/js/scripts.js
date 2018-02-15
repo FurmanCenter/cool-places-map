@@ -173,9 +173,7 @@ function makeApiCall() {
   var valueRangeBody = {
      'range': 'A1:F50',
      'majorDimension': 'ROWS',
-     'values': [
-       ['mamoun', 'Lunch', 'Falafel', 40.733046, -73.997131, 'gold']
-     ]
+     'values': ['mamoun', 'Lunch', 'Falafel', 40.733046, -73.997131, 'gold']
   };
 
   var request = gapi.client.sheets.spreadsheets.values.append(params, valueRangeBody);
