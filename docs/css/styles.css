@@ -22,6 +22,27 @@
   padding: 10px;
 }
 
+
+#signin-button {
+  position: absolute;
+  z-index: 1000;
+  bottom: 10px;
+  left: 10px;
+  background: #FFF;
+  padding: 10px 15px 10px 15px;
+  border-radius: 7px;
+}
+
+#signout-button {
+  position: absolute;
+  z-index: 1000;
+  bottom: 10px;
+  left: 100px;
+  background: #FFF;
+  padding: 10px 15px 10px 15px;
+  border-radius: 7px;
+}
+
 h1, h3  {
   margin: 0;
 }
