@@ -1,6 +1,6 @@
-# [Favorite Furmaner Places](https://furmancenter.github.io/cool-places-map/)
+# [Favorite Furmaner Places Map](https://furmancenter.github.io/cool-places-map/)
 
-### [Add Your Own Cool Places!](https://github.com/FurmanCenter/cool-places-map/wiki/Add-new-places)
+### Add Your Own Cool Places!
 
 You can now add new places directly from the map. Do do so you first need to sign-in with Google (to make changes to the back-end googlesheet). Once signed-in, simply click on the location where you'd like to add a new place, and fill out the information. 
 
