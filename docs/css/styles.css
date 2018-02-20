@@ -22,25 +22,28 @@
   padding: 10px;
 }
 
-
-#signin-button {
+#google-button {
   position: absolute;
   z-index: 1000;
-  bottom: 10px;
+  top: 10px;
   left: 10px;
+  width: 120px;
   background: #FFF;
-  padding: 10px 15px 10px 15px;
-  border-radius: 7px;
+  padding: 0;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 45px;
+  padding-right: 10px;
 }
 
-#signout-button {
-  position: absolute;
-  z-index: 1000;
-  bottom: 10px;
-  left: 100px;
-  background: #FFF;
-  padding: 10px 15px 10px 15px;
-  border-radius: 7px;
+#google-logo {
+  display: block;
+  float: left;
+  padding-right: 10px;
 }
 
 h1, h3  {

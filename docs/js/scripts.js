@@ -3,11 +3,21 @@
 
 const fcLatLng = [40.7307216, -73.9998367];
 
-var map = L.map('places-map').setView(fcLatLng, 16);
+var map = L.map('places-map', {zoomControl: false}).setView(fcLatLng, 16);
 
 L.tileLayer('https://b.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
+
+// After initially diabling zoom-control, add it back in different location
+L.control.zoom({position:'topright'}).addTo(map);
+
+// Disable leaflet clicks on elements in front
+['google-button', 'legend-container'].forEach(id => {
+  const div = L.DomUtil.get(id);
+  L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
+});
+
 
 // Get data, and make map
 getPlaces((places) => {
@@ -19,7 +29,7 @@ getPlaces((places) => {
   let typeColors = places.map(place => place.color);
   typeColors = [...new Set(typeColors)];
 
-  const layerOptions = {collapsed: false, position: 'topleft'};
+  const layerOptions = {collapsed: false, position: 'topright'};
 
   const typeLayers = {}; // fill with layers to create layer control tool
   const typeColorMap = {}; // fill with type/color key/val pairs
@@ -226,8 +236,20 @@ function updateSignInStatus(isSignedIn) {
 
 function handleSignInClick(event) {
   gapi.auth2.getAuthInstance().signIn();
+
+  // switch the button between sign- in/out
+  if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+    $('#google-button span').text('Sign out')
+    $('#google-button').attr('onclick', 'handleSignOutClick()')
+  }
 }
 
 function handleSignOutClick(event) {
   gapi.auth2.getAuthInstance().signOut();
+
+  // switch the button between sign- in/out
+  if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
+    $('#google-button span').text('Sign in')
+    $('#google-button').attr('onclick', 'handleSignInClick()')
+  }
 }
